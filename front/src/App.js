@@ -1,9 +1,12 @@
-import Content from "./components/Content";
+import React, { useState, useEffect } from "react";
+import Header from "./components/Header";
+import Movies from "./components/Movies";
 
 function App() {
   return (
     <div>
-      <Content />
+      <Header />
+      <Link to="/movie" element={Movies}></Link>
     </div>
   );
 }
