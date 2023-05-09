@@ -1,5 +1,5 @@
 const S = require("sequelize");
-const db = require("../index");
+const db = require("../db");
 // const bc=require('bcrypt')
 
 class User extends S.Model {}
@@ -26,7 +26,7 @@ User.init(
       require: true,
     },
   },
-  { sequilize: db, modelName: "User" }
+  { sequelize: db, modelName: "user" }
 );
 
 module.exports = User;

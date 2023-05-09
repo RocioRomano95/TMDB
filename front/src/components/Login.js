@@ -3,6 +3,7 @@ import useInput from "../hooks/useInput";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import URL_BACK from "../rutas";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const Login = () => {
       password: password.value,
     };
     axios
-      .post("http://localhost:3000/api/login", usuario)
+      .post(`${URL_BACK}/api/login`, usuario)
       .then((res) => res.data)
       .then((res) => {
         user.logUser(res);

@@ -11,7 +11,7 @@ const Movies = () => {
   const [movie, setMovie] = useState({ title: "Cargando peliculas..." });
   const [searchKey, setSearchKey] = useState("");
 
-  const fetchMovies = async (searchKey, url) => {
+  const fetchMovies = async (searchKey) => {
     const type = searchKey ? "search" : "discover";
     const tipo = searchKey ? "multi" : "movie";
 
@@ -25,9 +25,6 @@ const Movies = () => {
     });
     setMovies(results);
     console.log("MoviesOrTVShows", results);
-
-    url = results?.backdrop_path;
-    console.log("UUUUUUUUURL", url);
   };
 
   const searchMovies = (e) => {
@@ -35,10 +32,6 @@ const Movies = () => {
     fetchMovies(searchKey);
   };
 
-  const searchMovie = (e) => {
-    e.preventDefault();
-    fetchMovies(url);
-  };
   const handleClick = (movie) => {
     setMovie(movie);
   };
