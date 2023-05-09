@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Movies = () => {
   const API_URL = "https://api.themoviedb.org/3";
@@ -10,22 +11,36 @@ const Movies = () => {
   const [movie, setMovie] = useState({ title: "Cargando peliculas..." });
   const [searchKey, setSearchKey] = useState("");
 
-  const fetchMovies = async (searchKey) => {
+  const fetchMovies = async (searchKey, url) => {
     const type = searchKey ? "search" : "discover";
+    const tipo = searchKey ? "multi" : "movie";
+
     const {
       data: { results },
-    } = await axios.get(`${API_URL}/${type}/movie`, {
+    } = await axios.get(`${API_URL}/${type}/${tipo}`, {
       params: {
         api_key: API_KEY,
         query: searchKey,
       },
     });
     setMovies(results);
+    console.log("MoviesOrTVShows", results);
+
+    url = results?.backdrop_path;
+    console.log("UUUUUUUUURL", url);
   };
 
   const searchMovies = (e) => {
     e.preventDefault();
     fetchMovies(searchKey);
+  };
+
+  const searchMovie = (e) => {
+    e.preventDefault();
+    fetchMovies(url);
+  };
+  const handleClick = (movie) => {
+    setMovie(movie);
   };
 
   const onChange = (e) => {
@@ -38,23 +53,28 @@ const Movies = () => {
 
   return (
     <div className="container">
-      <h2>Trailer Movies</h2>
-      <form className="container p-2" onSubmit={searchMovies}>
+      <h2>Movies & TV </h2>
+      <form className="container" onSubmit={searchMovies}>
         <input type="text" placeholder="Buscar" onChange={onChange} />
         <button>Buscar</button>
       </form>
       <div class="container mt-2">
         <div class="row ">
           {movies.map((movie) => (
-            <div key={movie.id} className="col-md-4">
-              <img
-                src={`${IMAGE_PATH + movie.poster_path}`}
-                alt=""
-                height="500px"
-                width="100%"
-              />
-              <h3>{movie.title}</h3>
-            </div>
+            <Link to={`/detailMovies/${movie.id}}`}>
+              <div key={movie.id} className="col-md-4">
+                <img
+                  src={`${IMAGE_PATH + movie.poster_path}`}
+                  alt=""
+                  height={600}
+                  width="100%"
+                  onClick={() => {
+                    handleClick(movie);
+                  }}
+                />
+                <h3>{movie.title}</h3>
+              </div>
+            </Link>
           ))}
         </div>
       </div>
