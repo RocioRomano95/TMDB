@@ -26,7 +26,7 @@ const Navbar = () => {
 
   return user.isAuthenticated ? (
     <div>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary link-primary">
+      <nav class="navbar navbar-expand-lg bg-dark link-primary">
         <div class="container-fluid">
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
@@ -55,12 +55,27 @@ const Navbar = () => {
     </div>
   ) : (
     <div>
-      <Link to="/signup">
-        <button>Sign Up</button>
-      </Link>
-      <Link to="/login">
-        <button> Login</button>
-      </Link>
+      <nav class="navbar navbar-expand-lg bg-dark link-primary">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#"></a>
+              </li>
+              <li class="nav-item">
+                <Link to="/signup">
+                  <button>Sign Up</button>
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link to="/login">
+                  <button> Login</button>
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
   );
 };
