@@ -54,7 +54,7 @@ const Movies = () => {
       <div class="container mt-2">
         <div class="row ">
           {movies.map((movie) => (
-            <Link to={`/detailMovies/${movie.id}}`}>
+            <Link to={`/detailMovies/${movie.id}/${movie.media_type}`}>
               <div key={movie.id} className="col-md-4">
                 <img
                   src={`${IMAGE_PATH + movie.poster_path}`}

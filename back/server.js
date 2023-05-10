@@ -2,11 +2,12 @@ const express = require("express");
 const app = express();
 const routes = require("./routes");
 const cors = require("cors");
-const model = require("./models/index");
+const models = require("./models/index");
 const db = require("./db");
+const cookieParser = require("cookie-parser");
 
-app.use(cors());
 app.use(express.json());
+app.use(cors({ origin: `http://localhost:3000`, credentials: true }));
 
 app.use("/api", routes);
 const PORT = process.env.PORT || 3001;

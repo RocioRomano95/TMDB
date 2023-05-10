@@ -1,9 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import useInput from "../hooks/useInput";
 import axios from "axios";
 import URL_BACK from "../rutas";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
 
 const Signup = () => {
   const nombre = useInput();
@@ -11,9 +9,6 @@ const Signup = () => {
   const nacionalidad = useInput();
   const edad = useInput();
   const password = useInput();
-
-  const navigate = useNavigate();
-  const user = useInput(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,10 +21,7 @@ const Signup = () => {
     };
     axios
       .post(`${URL_BACK}/api/signup`, nuevoUsuario)
-      .then((res) => {
-        user.logOut(res.data);
-        navigate("/");
-      })
+      .then((result) => result)
       .catch((err) => console.log(err));
   };
 

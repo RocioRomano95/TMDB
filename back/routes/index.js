@@ -7,7 +7,9 @@ const User = require("../models");
 // });
 
 router.post("/signup", (req, res) => {
+  console.log(req.body);
   User.create(req.body)
+
     .then((result) => res.status(200).send(result))
     .catch((error) => res.send(error));
 });
@@ -18,6 +20,7 @@ router.post("/login", (req, res, next) => {
     if (!user) res.status(401).send("no existe el usuario");
     user.validatePassword(password).then((result) => {
       if (result) {
+        console.log("RESULT", result);
         res.status(200).send(user);
       } else
         res

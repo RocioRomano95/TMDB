@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import useInput from "../hooks/useInput";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
@@ -9,7 +9,8 @@ const Login = () => {
   const navigate = useNavigate();
   const password = useInput();
   const email = useInput();
-  const user = useInput(AuthContext);
+  const user = useContext(AuthContext);
+  console.log("User", user);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,6 +22,7 @@ const Login = () => {
       .post(`${URL_BACK}/api/login`, usuario)
       .then((res) => res.data)
       .then((res) => {
+        console.log(res);
         user.logUser(res);
         navigate("/");
       })

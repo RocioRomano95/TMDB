@@ -22,6 +22,7 @@ const AuthContextProvider = ({ children }) => {
   });
 
   const logUser = (user) => {
+    console.log("context user", user);
     setAuth({
       nombre: user.nombre,
       email: user.email,

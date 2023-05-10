@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import DetailMovies from "./components/DetailMovies";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import TvShows from "./components/TvShows";
 
 function App() {
   return (
@@ -12,7 +13,12 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Movies />} />
-        <Route path="/detailMovies/:id" element={<DetailMovies />}></Route>
+        <Route path="/movie" element={<Movies />} />
+        <Route path="/tvShows" element={<TvShows />} />
+        <Route
+          path="/detailMovies/:id/:mediatype"
+          element={<DetailMovies />}
+        ></Route>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
       </Routes>

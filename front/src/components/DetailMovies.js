@@ -7,7 +7,8 @@ const DetailMovies = () => {
   const API_KEY = "c494ae6fdb5cf03bf6b4da755f0fda89";
   const IMAGE_PATH = "https://image.tmdb.org/t/p/original";
 
-  const { id } = useParams();
+  const { id, mediatype } = useParams();
+  console.log("Type", useParams());
   const [movieDetail, setMovieDetail] = useState({});
 
   const fetchMovieDetail = async () => {
@@ -30,6 +31,8 @@ const DetailMovies = () => {
         <img
           src={`${IMAGE_PATH + movieDetail.poster_path}`}
           alt={`peli ${movieDetail.title}`}
+          heigth={300}
+          width="auto"
         />
         <p> {movieDetail.overview}</p>
         <p> {movieDetail.video}</p>
